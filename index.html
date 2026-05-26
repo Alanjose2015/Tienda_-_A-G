@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda Online Alan Gael A&G</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; background: #f4f7f9; text-align: center; color: #333; display: flex; flex-direction: column; min-height: 100vh; }
+        header { padding: 0; background: linear-gradient(rgba(255,255,255,0.1), rgba(255,255,255,0.1)), url('avatar.png.png'); background-size: cover; background-position: center 5%; box-shadow: 0 4px 12px rgba(0,0,0,0.2); position: sticky; top: 0; z-index: 100; min-height: 330px; }
+        .top-info { background: rgba(0, 86, 179, 0.9); color: white; padding: 12px; font-size: 13px; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; }
+        .header-top-content { display: flex; justify-content: space-between; align-items: flex-start; padding: 10px 15px; }
+        .logo-circulo { width: 40px; height: 40px; background: #fff; border: 2px solid #00a8ff; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-weight: bold; font-size: 10px; color: #00a8ff; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
+        .estrellas-container { display: flex; flex-direction: column; align-items: center; gap: 1px; }
+        .mundiales { color: #f1c40f; font-size: 20px; text-shadow: 1px 1px 3px #000; margin-top: -5px; }
+        .copas-text { color: #f1c40f; font-size: 9px; font-weight: bold; text-shadow: 1px 1px 2px #000; }
+        .header-bottom-elements { margin-top: 140px; }
+        .search-bar { width: 85%; max-width: 320px; padding: 10px; border-radius: 20px; border: none; font-size: 14px; outline: none; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
+        .categorias { display: flex; justify-content: center; gap: 6px; flex-wrap: wrap; margin-top: 12px; padding-bottom: 15px; }
+        .btn { padding: 6px 12px; border-radius: 15px; border: 1px solid #eee; background: white; font-size: 11px; font-weight: 700; cursor: pointer; }
+        .btn.active { background: #00a8ff; color: white; border-color: #00a8ff; }
+        .promo-banner { background: #fff9c4; margin: 15px; padding: 15px; border-radius: 15px; border: 2.5px dashed #ff9f43; }
+        main { flex: 1; padding: 10px; }
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; max-width: 800px; margin: auto; }
+        .card { background: white; padding: 15px; border-radius: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); display: flex; flex-direction: column; justify-content: space-between; }
+        .card h3 { font-size: 10px; margin: 0 0 10px 0; height: 35px; overflow: hidden; color: #444; line-height: 1.2; text-transform: uppercase; }
+        .precio { color: #2ecc71; font-weight: 800; font-size: 20px; margin-bottom: 10px; display: block; }
+        .btn-ws { background: #25d366; color: white; border: none; padding: 10px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 11px; text-transform: uppercase; display: block; }
+        footer { background: #222; color: #fff; padding: 25px 15px; font-size: 12px; }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="top-info">TIENDA ONLINE ALAN GAEL A&G</div>
+    <div class="header-top-content">
+        <div class="logo-circulo">A & G</div>
+        <div class="estrellas-container">
+            <div class="mundiales">⭐⭐⭐</div>
+            <div class="copas-text">🏆 16 COPAS AMÉRICA</div>
+            <div class="copas-text" style="color: #fff; font-size: 8px;">🥇🥇 JJOO | 🏆🏆 FINALISSIMA</div>
+        </div>
+        <div class="logo-circulo">A & G</div>
+    </div>
+    <div class="header-bottom-elements">
+        <input type="text" id="buscador" class="search-bar" placeholder="🔍 ¿Qué buscas hoy?">
+        <div class="categorias">
+            <button class="btn active" onclick="filtrar('Todos', this)">Todos</button>
+            <button class="btn" onclick="filtrar('Tecno', this)">Tecno</button>
+            <button class="btn" onclick="filtrar('Audio', this)">Audio</button>
+            <button class="btn" onclick="filtrar('Hogar', this)">Hogar</button>
+        </div>
+    </div>
+</header>
+
+<main>
+    <div class="promo-banner">
+        <div style="font-weight:900; color:#ff007f; font-size:11px; text-transform:uppercase;">🌟 ¡Juega a la ruleta con tu compra sin cargo y gana importantes premios!! 🌟</div>
+    </div>
+    <div id="productos" class="grid"></div>
+</main>
+
+<footer>
+    <span style="font-weight:bold; font-size:15px;">Alan Gael A&G</span><br>
+    📍 San Miguel de Tucumán, Tucumán<br>
+    <a href="mailto:poncejose027@gmail.com" style="color:#74b9ff; text-decoration:none; font-weight:bold;">✉️ Enviar Correo</a>
+</footer>
+
+<script>
+    const lista = [
+        { n: "ADAPTADOR AUDIO HEMBRA A 2 JACK MACHO", c: "Tecno", p: 1600 },
+        { n: "ADAPTADOR IP A JACK 3.5 – BLANCO", c: "Tecno", p: 3999 },
+        { n: "ADAPTADOR MICROSD A USB", c: "Tecno", p: 750 },
+        { n: "ADAPTADOR SIM", c: "Tecno", p: 499 },
+        { n: "ADAPTADOR HDMI A 2 HDMI", c: "Tecno", p: 3000 },
+        { n: "MODULADOR FM ALS-A09 – NEGRO", c: "Tecno", p: 12000 },
+        { n: "AURICULAR BT MODO-706 CROWS", c: "Audio", p: 9900 },
+        { n: "AURICULAR P15 BT MOD63-22", c: "Audio", p: 16999 },
+        { n: "VINCHA BT P47", c: "Audio", p: 9999 },
+        { n: "AFEITADORA METAL MODS-776", c: "Hogar", p: 7999 },
+        { n: "FREIDORA DE AIRE 1800W 10L", c: "Hogar", p: 85000 },
+        { n: "TV BOX STREAM CORE 4-32GB", c: "Hogar", p: 39000 },
+        { n: "PROYECTOR ORVA-HY300", c: "Hogar", p: 79999 },
+        { n: "PARLANTE 15” MODV-0036", c: "Audio", p: 149999 }
+    ];
+
+    function mostrar(prod) {
+        const div = document.getElementById('productos');
+        div.innerHTML = prod.map(i => {
+            const textoMensaje = "¡Hola Alan! Quiero pedir: " + i.n + " ($" + i.p.toLocaleString() + ")";
+            const urlWa = "https://whatsapp.com" + encodeURIComponent(textoMensaje);
+            
+            return `
+                <div class="card">
+                    <h3>${i.n}</h3>
+                    <div>
+                        <span class="precio">$${i.p.toLocaleString()}</span>
+                        <a class="btn-ws" target="_blank" href="${urlWa}">🛒 PEDIR</a>
+                    </div>
+                </div>
+            `;
+        }).join('');
+    }
+
+    function filtrar(cat, btn) {
+        document.querySelectorAll('.btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        mostrar(cat === 'Todos' ? lista : lista.filter(i => i.c === cat));
+    }
+
+    document.getElementById('buscador').oninput = (e) => {
+        const t = e.target.value.toLowerCase();
+        mostrar(lista.filter(i => i.n.toLowerCase().includes(t)));
+    };
+
+    window.onload = () => mostrar(lista);
+</script>
+</body>
+</html>
